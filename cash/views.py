@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import viewsets, permissions
+from .models import CashMovement
+from .serializers import CashMovementSerializer
 
-# Create your views here.
+class CashMovementViewSet(viewsets.ModelViewSet):
+    queryset = CashMovement.objects.all()
+    serializer_class = CashMovementSerializer
+    permission_classes = [permissions.IsAuthenticated]
