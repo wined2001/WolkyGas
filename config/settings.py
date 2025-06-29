@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-pt)l8^&oel_#rv)6(v0lgav6&@%9cpox!+*r7g=u7v3*vhl^f(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wolkygas.azurewebsites.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['wolkygas.azurewebsites.net', 'localhost', '127.0.0.1','portalgas.wolky.cl']
 
 
 # Application definition
