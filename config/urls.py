@@ -18,7 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from reports.views import ReportViewSet
+
+from reports.views import ReportViewSet, DashboardView
+
 from geolocation.views import DriverLocationUpdateView, DriverLocationViewSet
 from accounts.views import UserViewSet
 from companies.views import CompanyViewSet
@@ -46,6 +48,7 @@ router.register(r"reports", ReportViewSet, basename="report")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("dashboard/", DashboardView.as_view(), name="dashboard"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/location/", DriverLocationUpdateView.as_view(), name="location"),
