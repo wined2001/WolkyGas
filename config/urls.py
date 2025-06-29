@@ -18,15 +18,35 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from reports.views import ReportViewSet
-from geolocation.views import DriverLocationUpdateView
+from reports.views import ReportViewSet, DashboardView
+from geolocation.views import DriverLocationUpdateView, DriverLocationViewSet
+from accounts.views import UserViewSet
+from companies.views import CompanyViewSet
+from inventory.views import (
+    WarehouseViewSet,
+    CylinderTypeViewSet,
+    CylinderStockViewSet,
+)
+from orders.views import OrderViewSet
+from cash.views import CashMovementViewSet
+from subscriptions.views import SubscriptionViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = DefaultRouter()
+router.register(r"users", UserViewSet)
+router.register(r"companies", CompanyViewSet)
+router.register(r"warehouses", WarehouseViewSet)
+router.register(r"cylinder-types", CylinderTypeViewSet)
+router.register(r"cylinder-stocks", CylinderStockViewSet)
+router.register(r"orders", OrderViewSet)
+router.register(r"cash-movements", CashMovementViewSet)
+router.register(r"subscriptions", SubscriptionViewSet)
+router.register(r"locations", DriverLocationViewSet)
 router.register(r"reports", ReportViewSet, basename="report")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("dashboard/", DashboardView.as_view(), name="dashboard"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/location/", DriverLocationUpdateView.as_view(), name="location"),
