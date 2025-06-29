@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.template import engines
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +30,8 @@ ALLOWED_HOSTS = ['wolkygas.azurewebsites.net', 'localhost', '127.0.0.1','portalg
 
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -62,6 +65,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+
+# Template configuration
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -73,6 +79,13 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django.templatetags.static',
+                'django.templatetags.i18n',
+                'django.templatetags.l10n',
+                'django.templatetags.tz',
+                'django.templatetags.cache',
+                'django.templatetags.json_script'
+                
             ],
         },
     },
